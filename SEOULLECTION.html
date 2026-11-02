@@ -1,0 +1,1056 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEOULLECTION</title>
+
+    <style>
+        /* =========================
+           PENGATURAN DASAR
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .top-bar {
+            min-height: 40px;
+            background-color: #f59bd0;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           HERO SECTION
+        ========================= */
+
+        .pink-area {
+            min-height: 42vh;
+            background-color: #ffb9df;
+            background-image: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.65) 7px,
+                transparent 8px
+            );
+            background-size: 45px 45px;
+            text-align: center;
+            padding: 45px 15px;
+        }
+
+        .pink-area h1 {
+            color: #000;
+            font-size: 38px;
+            letter-spacing: 2px;
+            margin: 20px 0;
+        }
+
+        .pink-area h4 {
+            font-weight: normal;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pink-area p {
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-top: 25px;
+        }
+
+        /* =========================
+           BLUE AREA
+        ========================= */
+
+        .blue-area {
+            flex: 1;
+            background-color: #c8f0ff;
+            padding: 10px 0 30px;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .nav-bar {
+            background-color: white;
+            width: 85%;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .nav-bar a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .nav-bar a:hover {
+            color: #f59bd0;
+        }
+
+        /* =========================
+           SEARCH BAR
+        ========================= */
+
+        .search-bar {
+            background-color: white;
+            width: 85%;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            background: transparent;
+        }
+
+        /* =========================
+           GENRE SECTION
+        ========================= */
+
+        .genre-section {
+            background-color: white;
+            width: 85%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .genre-section h2,
+        .drama-section h2,
+        .about-section h2 {
+            color: #b76b9d;
+            font-size: 18px;
+        }
+
+        .genre-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .genre {
+            background-color: #ffebf6;
+            color: #a45d88;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .genre:hover,
+        .genre.active {
+            background-color: #f59bd0;
+            color: white;
+        }
+
+        /* =========================
+           DRAMA SECTION
+        ========================= */
+
+        .drama-section {
+            background-color: white;
+            width: 85%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .section-description {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+           DRAMA GRID
+        ========================= */
+
+        .drama-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        /* =========================
+           DRAMA CARD
+        ========================= */
+
+        .drama-card {
+            background-color: #fff8fc;
+            border: 1px solid #f5d9e9;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .drama-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(190, 115, 160, 0.15);
+        }
+
+        /* =========================
+           POSTER
+        ========================= */
+
+        .poster-container {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            background-color: #ffdaed;
+            overflow: hidden;
+        }
+
+        .drama-poster {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* =========================
+           PLACEHOLDER POSTER
+        ========================= */
+
+        .poster-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #ffdaed;
+            background-image: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.55) 5px,
+                transparent 6px
+            );
+            background-size: 30px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #a45d88;
+            padding: 15px;
+        }
+
+        .poster-symbol {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .poster-placeholder strong {
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .poster-placeholder small {
+            font-size: 9px;
+            letter-spacing: 1.5px;
+        }
+
+        /* =========================
+           DRAMA INFORMATION
+        ========================= */
+
+        .drama-info {
+            padding: 12px;
+        }
+
+        .drama-info h3 {
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 0 0 8px;
+            color: #333;
+        }
+
+        .drama-year {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .drama-genres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .drama-tag {
+            background-color: #e8f7ff;
+            color: #55869b;
+            padding: 5px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+        }
+
+        .drama-synopsis {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* =========================
+           EMPTY MESSAGE
+        ========================= */
+
+        .empty-message {
+            text-align: center;
+            color: #999;
+            padding: 30px 10px;
+            display: none;
+            font-size: 14px;
+        }
+
+        /* =========================
+           ABOUT SECTION
+        ========================= */
+
+        .about-section {
+            background-color: white;
+            width: 85%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.7;
+        }
+
+        .about-section p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* =========================
+           BOTTOM BAR
+        ========================= */
+
+        .bottom-bar {
+            min-height: 38px;
+            background-color: #f59bd0;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 900px) {
+            .drama-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .drama-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .pink-area h1 {
+                font-size: 30px;
+            }
+
+            .nav-bar,
+            .search-bar,
+            .genre-section,
+            .drama-section,
+            .about-section {
+                width: 92%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .drama-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            .drama-info {
+                padding: 9px;
+            }
+
+            .drama-info h3 {
+                font-size: 12px;
+            }
+
+            .drama-synopsis {
+                font-size: 11px;
+            }
+
+            .pink-area h1 {
+                font-size: 26px;
+            }
+
+            .top-bar,
+            .bottom-bar {
+                font-size: 10px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+        <span>EXPLORE</span>
+        <span>DISCOVER</span>
+        <span>ADD TO YOUR LIST</span>
+    </div>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="pink-area" id="home">
+
+        <h1>SEOULLECTION ꣑ৎ</h1>
+
+        <h4>
+            A little corner to discover, explore, and get recommendations
+            for your next favorite Korean drama.
+        </h4>
+
+        <p>YOUR LITTLE K-DRAMA DISCOVERY CORNER.</p>
+
+    </section>
+
+
+    <!-- BLUE AREA -->
+
+    <section class="blue-area">
+
+        <!-- NAVIGATION -->
+
+        <nav class="nav-bar">
+
+            <a href="#home">HOME</a>
+            <a href="#drama-list">DRAMA LIST</a>
+            <a href="#genre">GENRE</a>
+            <a href="#about">ABOUT</a>
+
+        </nav>
+
+
+        <!-- SEARCH BAR -->
+
+        <div class="search-bar">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search your favorite K-drama..."
+                aria-label="Search Korean dramas"
+            >
+
+        </div>
+
+
+        <!-- GENRE SECTION -->
+
+        <div class="genre-section" id="genre">
+
+            <h2>EXPLORE BY GENRE ♡</h2>
+
+            <div class="genre-list" id="genreButtons"></div>
+
+        </div>
+
+
+        <!-- DRAMA LIST -->
+
+        <div class="drama-section" id="drama-list">
+
+            <h2>DRAMA LIST ♡</h2>
+
+            <p class="section-description">
+                Find your next favorite K-drama!
+            </p>
+
+            <div class="drama-grid" id="dramaGrid"></div>
+
+            <div class="empty-message" id="emptyMessage">
+                Drama not found. Try another title! ♡
+            </div>
+
+        </div>
+
+
+        <!-- ABOUT SECTION -->
+
+        <div class="about-section" id="about">
+
+            <h2>ABOUT SEOULLECTION ♡</h2>
+
+            <p>
+                SEOULLECTION is a K-drama recommendation website created
+                to help users discover Korean dramas based on their
+                interests and favorite genres. From romance and comedy
+                to thriller and fantasy, explore different stories and
+                find your next drama to watch.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOTTOM BAR -->
+
+    <div class="bottom-bar">
+
+        <span>𖦹</span>
+        <span>YOUR PERSONAL DRAMA DIRECTORY!</span>
+        <span>𖹭.ᐟ</span>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // =========================
+        // DATA KATALOG DRAMA
+        // =========================
+
+        const dramas = [
+
+            {
+                title: "The Judge Returns",
+                year: 2026,
+                genre: ["Legal", "Fantasy", "Drama"],
+                synopsis: "A corrupt judge travels ten years into the past and gets a second chance to seek justice.",
+                poster: "https://cdn.kbizoom.com/media/2025/12/10013828/ji-sung-mbc-comeback-parkheesoonjisungwonjinahjpeg-jzkdyepyeyk1dubbx6eha4llmpwbhh6wbz0abiripbu.jpg"
+            },
+
+            {
+                title: "Spring Fever",
+                year: 2026,
+                genre: ["Romance", "Comedy"],
+                synopsis: "A teacher moves to a small village and meets a passionate man who changes her life.",
+                poster: "https://images.khan.co.kr/article/2025/12/31/news-p.v1.20251231.7390c3b393d740a7ab40f4651480e41c_P1.jpg"
+            },
+
+            {
+                title: "Can This Love Be Translated?",
+                year: 2026,
+                genre: ["Romance", "Comedy"],
+                synopsis: "A multilingual interpreter and a famous actress discover the challenges of understanding each other.",
+                poster: "https://motchilllb.com/wp-content/uploads/2025/12/tieng-yeu-nay-anh-dich-duoc-khong-poster.jpg"
+            },
+
+            {
+                title: "No Tail to Tell",
+                year: 2026,
+                genre: ["Fantasy", "Romance", "Comedy"],
+                synopsis: "A gumiho who does not want to become human faces an unexpected transformation.",
+                poster: "https://m.media-amazon.com/images/M/MV5BOTg2YmIyZDQtY2QwOS00NjAwLThlMjktOGQxNGMyN2E5MmVmXkEyXkFqcGc%40._V1_.jpg"
+            },
+
+            {
+                title: "Undercover Miss Hong",
+                year: 2026,
+                genre: ["Comedy", "Crime"],
+                synopsis: "An investigator goes undercover as a young employee at a securities company.",
+                poster: "https://thumbnews.nateimg.co.kr/view610/news.nateimg.co.kr/orgImg/ss/2025/12/29/202579971766966986.jpg"
+            },
+
+            {
+                title: "The Art of Sarah",
+                year: 2026,
+                genre: ["Mystery", "Thriller"],
+                synopsis: "A woman creates a glamorous identity while a detective tries to uncover the truth about her.",
+                poster: "https://awsimages.detik.net.id/community/media/visual/2026/02/17/drama-korea-the-art-of-sarah-1771294974286.jpeg?w=1200"
+            },
+
+            {
+                title: "Siren's Kiss",
+                year: 2026,
+                genre: ["Mystery", "Thriller", "Romance"],
+                synopsis: "An insurance investigator becomes involved with a woman connected to mysterious deaths.",
+                poster: "https://asianwiki.com/images/c/c3/Sirens_Kiss-p1.jpg"
+            },
+
+            {
+                title: "Boyfriend on Demand",
+                year: 2026,
+                genre: ["Romance", "Comedy"],
+                synopsis: "A woman tries a virtual dating service and discovers unexpected feelings.",
+                poster: "https://images.ctfassets.net/4cd45et68cgf/1rytii9uv1iT71i9kwUEf9/57427d818a1391f6c3cf470e5046a766/en_us_bod_main_main_ka_vertical_27x40_rgb_predate_1.jpg"
+            },
+
+            {
+                title: "Phantom Lawyer",
+                year: 2026,
+                genre: ["Legal", "Fantasy", "Comedy"],
+                synopsis: "A lawyer who can see ghosts helps spirits seek justice.",
+                poster: "https://1.vikiplatform.com/c/41427c/e5055562ba.jpg?x=b"
+            },
+
+            {
+                title: "Doctor Shin",
+                year: 2026,
+                genre: ["Medical", "Romance", "Thriller"],
+                synopsis: "A neurosurgeon faces a difficult medical decision to save the woman he loves.",
+                poster: "https://www.bntnews.co.kr/data/bnt/image/2026/03/11/bnt202603110165.jpg"
+            },
+
+            {
+                title: "Cabbage Your Life",
+                year: 2026,
+                genre: ["Family", "Comedy", "Drama"],
+                synopsis: "An urban family learns to adapt to a new life in the countryside.",
+                poster: "https://asianwiki.com/images/5/5b/Cabbage_Your_Life-p1.jpg"
+            },
+
+            {
+                title: "Yumi's Cells 3",
+                year: 2026,
+                genre: ["Romance", "Comedy"],
+                synopsis: "Yumi's life as a successful writer takes an unexpected turn when she meets a new editor.",
+                poster: "https://img.hankyung.com/photo/202603/BF.43786551.1.jpg"
+            },
+
+            {
+                title: "Sold Out on You",
+                year: 2026,
+                genre: ["Romance", "Comedy"],
+                synopsis: "A home shopping host meets a hardworking farmer in the countryside.",
+                poster: "https://img.sbs.co.kr/newsnet/etv/upload/2026/04/03/30001054111.jpg"
+            },
+
+            {
+                title: "Filing for Love",
+                year: 2026,
+                genre: ["Romance", "Comedy", "Drama"],
+                synopsis: "A workplace rivalry between an auditor and an audit team leader develops into something unexpected.",
+                poster: "https://s3.cosmopolitan.co.id/1775564933.webp"
+            },
+
+            {
+                title: "My Royal Nemesis",
+                year: 2026,
+                genre: ["Fantasy", "Romance", "Comedy"],
+                synopsis: "A woman from the Joseon era wakes up in the modern world and meets a businessman.",
+                poster: "https://images.plex.tv/photo?scale=2&size=large-480&url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2F1O4z2HMlg0hRPljmAf8TzgUaGls.jpg"
+            },
+
+            {
+                title: "The Legend of Kitchen Soldier",
+                year: 2026,
+                genre: ["Fantasy", "Comedy"],
+                synopsis: "A soldier receives a game-like system that helps him develop his cooking skills.",
+                poster: "https://cdn.www.cineplay.co.kr/w1200/q100/f_jpg/article-images/2026-04-21/325dd747-36bc-4856-83fd-8aac97409d1f.jpg"
+            },
+
+            {
+                title: "The Apartment Job",
+                year: 2026,
+                genre: ["Crime", "Comedy", "Thriller"],
+                synopsis: "A former gang leader becomes involved in a complicated apartment-related scheme.",
+                poster: "https://image.idntimes.com/post/20260708/1000182399_73dde889-3bab-4af6-8edc-01de718c23f2.jpg"
+            },
+
+            {
+                title: "Spooky in Love",
+                year: 2026,
+                genre: ["Fantasy", "Romance", "Comedy"],
+                synopsis: "A woman who can see ghosts works with a prosecutor to solve mysterious cases.",
+                poster: "https://awsimages.detik.net.id/community/media/visual/2026/07/20/poster-drama-terbaru-park-eun-bin-spooky-in-love-dok-netflix-1784563375838.jpeg?w=800"
+            },
+
+            {
+                title: "A Bona Fide Killer",
+                year: 2026,
+                genre: ["Action", "Thriller", "Comedy"],
+                synopsis: "A woman with a secret past tries to protect her ordinary family life.",
+                poster: ""
+            },
+
+            {
+                title: "Our Sticky Love",
+                year: 2026,
+                genre: ["Romance", "Comedy"],
+                synopsis: "A woman who loses her memory meets a man who claims to be her boyfriend.",
+                poster: "https://qehfmxuvxmfoagfedkkh.supabase.co/storage/v1/object/public/images/1783660192455-cnus3bjy0uh.jpeg"
+            },
+
+            {
+                title: "OK, Let's Get Divorced",
+                year: 2026,
+                genre: ["Romance", "Comedy", "Drama"],
+                synopsis: "A married couple running a wedding dress business decides to get divorced.",
+                poster: "https://phimimg.com/uploads/movies/20260821/u-thi-ly-hon-poster.webp"
+            }
+
+        ];
+
+
+        // =========================
+        // MEMBUAT PLACEHOLDER
+        // =========================
+
+        function createPlaceholder(title) {
+
+            const placeholder = document.createElement("div");
+
+            placeholder.className = "poster-placeholder";
+
+            placeholder.innerHTML = `
+                <span class="poster-symbol">♡</span>
+                <strong>${title}</strong>
+                <small>POSTER COMING SOON</small>
+            `;
+
+            return placeholder;
+
+        }
+
+
+        // =========================
+        // MENAMPILKAN KARTU DRAMA
+        // =========================
+
+        const dramaGrid = document.getElementById("dramaGrid");
+
+        const emptyMessage = document.getElementById("emptyMessage");
+
+
+        function displayDramas(dramaData) {
+
+            dramaGrid.innerHTML = "";
+
+            dramaData.forEach(function(drama) {
+
+                // Membuat kartu
+
+                const card = document.createElement("div");
+
+                card.className = "drama-card";
+
+
+                // Membuat bagian poster
+
+                const posterContainer = document.createElement("div");
+
+                posterContainer.className = "poster-container";
+
+
+                if (drama.poster) {
+
+                    const image = document.createElement("img");
+
+                    image.className = "drama-poster";
+
+                    image.src = drama.poster;
+
+                    image.alt = "Poster " + drama.title;
+
+                    image.loading = "lazy";
+
+
+                    // Jika poster gagal dimuat
+
+                    image.addEventListener("error", function() {
+
+                        posterContainer.replaceChildren(
+                            createPlaceholder(drama.title)
+                        );
+
+                    });
+
+
+                    posterContainer.appendChild(image);
+
+                } else {
+
+                    posterContainer.appendChild(
+                        createPlaceholder(drama.title)
+                    );
+
+                }
+
+
+                // Membuat informasi drama
+
+                const dramaInfo = document.createElement("div");
+
+                dramaInfo.className = "drama-info";
+
+
+                // Judul
+
+                const title = document.createElement("h3");
+
+                title.textContent = drama.title;
+
+
+                // Tahun
+
+                const year = document.createElement("div");
+
+                year.className = "drama-year";
+
+                year.textContent = drama.year;
+
+
+                // Genre
+
+                const genreContainer = document.createElement("div");
+
+                genreContainer.className = "drama-genres";
+
+
+                drama.genre.forEach(function(item) {
+
+                    const tag = document.createElement("span");
+
+                    tag.className = "drama-tag";
+
+                    tag.textContent = item;
+
+                    genreContainer.appendChild(tag);
+
+                });
+
+
+                // Sinopsis
+
+                const synopsis = document.createElement("p");
+
+                synopsis.className = "drama-synopsis";
+
+                synopsis.textContent = drama.synopsis;
+
+
+                // Menggabungkan informasi
+
+                dramaInfo.appendChild(title);
+
+                dramaInfo.appendChild(year);
+
+                dramaInfo.appendChild(genreContainer);
+
+                dramaInfo.appendChild(synopsis);
+
+
+                // Menggabungkan poster dan informasi ke kartu
+
+                card.appendChild(posterContainer);
+
+                card.appendChild(dramaInfo);
+
+
+                // Memasukkan kartu ke halaman
+
+                dramaGrid.appendChild(card);
+
+            });
+
+
+            // Pesan jika drama tidak ditemukan
+
+            emptyMessage.style.display =
+                dramaData.length === 0 ? "block" : "none";
+
+        }
+
+
+        // =========================
+        // MEMBUAT TOMBOL GENRE
+        // =========================
+
+        const genreButtons = document.getElementById("genreButtons");
+
+
+        const allGenres = [
+
+            "All",
+
+            ...new Set(
+
+                dramas.flatMap(function(drama) {
+
+                    return drama.genre;
+
+                })
+
+            )
+
+        ];
+
+
+        let selectedGenre = "All";
+
+
+        function displayGenres() {
+
+            genreButtons.innerHTML = "";
+
+
+            allGenres.forEach(function(genre) {
+
+                const button = document.createElement("button");
+
+                button.className = "genre";
+
+                button.textContent = genre;
+
+
+                // Menandai genre yang sedang dipilih
+
+                if (genre === selectedGenre) {
+
+                    button.classList.add("active");
+
+                }
+
+
+                // Ketika tombol genre diklik
+
+                button.addEventListener("click", function() {
+
+                    selectedGenre = genre;
+
+                    displayGenres();
+
+                    filterDramas();
+
+                });
+
+
+                genreButtons.appendChild(button);
+
+            });
+
+        }
+
+
+        // =========================
+        // SEARCH DAN FILTER
+        // =========================
+
+        const searchInput = document.getElementById("searchInput");
+
+
+        function filterDramas() {
+
+            const keyword = searchInput.value
+                .trim()
+                .toLowerCase();
+
+
+            const filteredDramas = dramas.filter(function(drama) {
+
+
+                // Mencari berdasarkan judul
+
+                const matchesTitle =
+                    drama.title.toLowerCase().includes(keyword);
+
+
+                // Mencari berdasarkan sinopsis
+
+                const matchesSynopsis =
+                    drama.synopsis.toLowerCase().includes(keyword);
+
+
+                // Mencari berdasarkan genre
+
+                const matchesSearchGenre =
+                    drama.genre.some(function(genre) {
+
+                        return genre.toLowerCase().includes(keyword);
+
+                    });
+
+
+                // Menggabungkan hasil pencarian
+
+                const matchesSearch =
+                    matchesTitle ||
+                    matchesSynopsis ||
+                    matchesSearchGenre;
+
+
+                // Filter berdasarkan tombol genre
+
+                const matchesGenre =
+                    selectedGenre === "All" ||
+                    drama.genre.includes(selectedGenre);
+
+
+                return matchesSearch && matchesGenre;
+
+            });
+
+
+            displayDramas(filteredDramas);
+
+        }
+
+
+        // Ketika pengunjung mengetik di search bar
+
+        searchInput.addEventListener("input", filterDramas);
+
+
+        // =========================
+        // MENAMPILKAN KATALOG AWAL
+        // =========================
+
+        displayGenres();
+
+        displayDramas(dramas);
+
+    </script>
+
+</body>
+
+</html>
+```
